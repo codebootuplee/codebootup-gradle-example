@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Library API
+  version: 1.0.0
+security: [ ]
+servers:
+  - url: /api/v1
+paths:
+  /books:
+    get:
+      operationId: getAllBooks
+      summary: List all books
+      responses:
+        '200':
+          description: A list of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: Basic
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        author:
+          type: string
